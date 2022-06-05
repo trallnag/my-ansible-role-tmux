@@ -25,17 +25,17 @@
 - { name: "Debug", debug: {var: tmux_version.stdout_lines}, tags: [debug]}
 
 - name: Clone source repo
-  when: tmux_version.stdout != "tmux 3.2a"
+  when: tmux_version.stdout != "tmux 3.3"
   ansible.builtin.git:
     repo: https://github.com/tmux/tmux.git
     dest: /tmp/tmux
-    version: "3.2"
+    version: "3.3"
     depth: 1
     force: false
   become: true
 
 - name: Compile and install
-  when: tmux_version.stdout != "tmux 3.2a"
+  when: tmux_version.stdout != "tmux 3.3"
   ansible.builtin.shell: |
     cd /tmp/tmux \
       && sh autogen.sh \
